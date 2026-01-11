@@ -15,7 +15,7 @@ namespace Payment.Controllers
             {
                 UserId = 12345,
                 Balance = 250.75,
-                Currency = "USD"
+                Currency = "INR"
             };
             return Ok(walletBalance);
         }
@@ -32,7 +32,7 @@ namespace Payment.Controllers
             {
                 UserId = 12345,
                 NewBalance = updatedBalance,
-                Currency = "USD"
+                Currency = "INR"
             };
             return Ok(response);
         }
