@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Payment.Models;
 
 namespace Payment.Controllers
 {
@@ -7,6 +8,7 @@ namespace Payment.Controllers
     [ApiController]
     public class WalletController : ControllerBase
     {
+        TestServices TestServices = new TestServices();
         [HttpGet]
         public IActionResult GetWalletBalance()
         {
@@ -28,12 +30,19 @@ namespace Payment.Controllers
                 return BadRequest("Amount must be greater than zero.");
             }
             var updatedBalance = 250.75 + request.Amount; // Example logic
-            var response = new
+            var response =  TestServices.ServiceName(request, "Add");
+            
+            return Ok(response);
+        }
+        [HttpPost("withdraw")]
+        public IActionResult WithdrawFunds([FromBody] AddFundsRequest request)
+        {
+            // Placeholder logic for withdrawing funds from the wallet
+            if (request.Amount <= 0)
             {
-                UserId = 12345,
-                NewBalance = updatedBalance,
-                Currency = "INR"
-            };
+                return BadRequest("Amount must be greater than zero.");
+            }
+            var response =  TestServices.ServiceName(request, "Withdraw");
             return Ok(response);
         }
     }
