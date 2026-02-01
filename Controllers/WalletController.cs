@@ -24,6 +24,7 @@ namespace Payment.Controllers
         [HttpPost]
         public IActionResult AddFunds([FromBody] AddFundsRequest request)
         {
+            string respon;
             // Placeholder logic for adding funds to the wallet
             if (request.Amount <= 0)
             {
